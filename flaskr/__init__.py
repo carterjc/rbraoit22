@@ -1,10 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+import os, os.path
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
-# app = Flask(__name__)
 
 
 def create_app():
@@ -25,6 +24,13 @@ def create_app():
 
 
 def create_database(app):
-	if not path.exists('flaskr/' + DB_NAME):
+	if os.path.exists('flaskr/' + DB_NAME):
+		os.remove('flaskr/' + DB_NAME)
+	if not os.path.exists('flaskr/' + DB_NAME):
 		db.create_all(app=app)
 		print('database created')
+
+		from .create_db import load_data
+		load_data(app, db)
+		print('database populated')
+
