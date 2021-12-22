@@ -1,11 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>About Page</h1>
-    <ul class="list-group list-group-flush" id="notes">
-        {% for student in students %}
-        <li class="list-group-item">
-          {{ student.fName }}
-        </li>
-        {% endfor %}
-      </ul>
+  <h1>AOIT's Class of 2022</h1>
+    <div class="row">
+      {% for student in students %}
+      <div class="col-sm-4">
+        <div class="card">
+          {% if student.image %}
+          <img class="card-img-top" src="../static/img/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }} Portrait">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ student.fName ~ ' ' ~ student.lName }}</h5>
+            <p class="card-text">{{ student.bio }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
 {% endblock content %}
