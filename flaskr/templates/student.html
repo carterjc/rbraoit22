@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                {% if student.image %}
+                    <img class="img-fluid rounded" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }}'s Portrait">
+                {% else %}
+                    <img class="img-fluid rounded" src="../static/img/test.JPG" alt="Placeholder Portrait">
+                {% endif %}
+
+            </div>
+            <div class="col-sm-8">
+                <h1>{{ student.fName ~ ' ' ~ student.lName ~ ', ' ~ get_age(student.birthday) }}</h1>
+                <p>{{ format_birthday(student.birthday) }}</p>
+                <p>{{ student.bio }}</p>
+                <p>{{ student.email }}</p>
+                <h3>Clubs</h3>
+                <ul class="list-group list-group-flush">
+                    {% for club in club_list(student.clubs) %}
+                        <li class="list-group-item">{{ club }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
