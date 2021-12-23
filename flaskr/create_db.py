@@ -1,7 +1,6 @@
 from .models import Student
 import csv, datetime, os, os.path
 import zipfile, tempfile, shutil
-import io
 
 from wand.image import Image
 
@@ -18,8 +17,6 @@ def load_data(app, db): # app, db params
 
     students = []
 
-    print('current dir', os.getcwd())
-
     # Extract zip file to get all pictures from Google Form
     # Gets name of zipfile (we know it contains the string "Picture to be included")
     zip_name = ''.join([x for x in os.listdir('./data') if "Picture" in x])
@@ -32,11 +29,9 @@ def load_data(app, db): # app, db params
     # Looks at random directory for the same type of name (no numbers appended to the end though)
     extract_name = ''.join([x for x in os.listdir(temp_dir) if "Picture" in x])
     os.mkdir("./data/pictures")
-    print(os.listdir(os.path.join(temp_dir, extract_name)))
-    convert_images(os.path.join(temp_dir, extract_name), extraction_dir)
-    print(os.listdir('./data/pictures'))
     # Moves file from the extracted folder in the temp directory into /pictures/ in the relative data directory
-    # shutil.move(os.path.join(temp_dir, extract_name), extraction_dir)
+    # If the file type is heic, convert to jpg
+    convert_images(os.path.join(temp_dir, extract_name), extraction_dir)
 
 
     with open("./data/student_data.csv", newline='') as f:
@@ -49,11 +44,9 @@ def load_data(app, db): # app, db params
             image_loc = ''.join([x for x in os.listdir("./data/pictures") if row[3] in x])
             if image_loc != "":
                 file_ext = os.path.splitext(image_loc)[1]
-                print("./data/pictures/" + image_loc)
                 old_image_loc = image_loc
                 image_loc = row[3].replace(" ", "").lower() + file_ext
-                os.rename("./data/pictures/" + old_image_loc, "./flaskr/static/img/" + image_loc)
-                print(image_loc)
+                os.rename("./data/pictures/" + old_image_loc, "./flaskr/static/img/students/" + image_loc)
 
             birthday = datetime.datetime.strptime(row[4], '%m/%d/%Y')
 
@@ -74,29 +67,9 @@ def load_data(app, db): # app, db params
         except OSError:
             pass
 
-    # dummy = Student(
-    #     fName="Carter",
-    #     lName="Costic",
-    #     bio="bio here",
-    #     email="cartercostic@gmail.com",
-    #     image="/test.JPG",
-    #     birthday=datetime.date(2004, 3, 5),
-    #     clubs="CyberPatriot"
-    # )
-    # new_student = Student(fName="Alex", lName="Costic", bio="bio here", email="alexcostic@gmail.com", image="/test.JPG", birthday=datetime.datetime(2004, 3, 5), clubs="CyberPatriot")
-    # new_student1 = Student(fName="Alex", lName="Costic", bio="bio here", email="alexcostic@gmail.com", image="/test.JPG", birthday=datetime.datetime(2004, 3, 5), clubs="CyberPatriot")
-    # new_student2 = Student(fName="Alex", lName="Costic", bio="bio here", email="alexcostic@gmail.com", image="/test.JPG", birthday=datetime.datetime(2004, 3, 5), clubs="CyberPatriot")
-
-    # print('pre population', students)
     with app.app_context():
         db.session.add_all(students)
         db.session.commit()
-
-
-
-
-
- 
 
 
 def convert_images(src, dst):
