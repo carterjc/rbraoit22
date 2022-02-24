@@ -1,0 +1,38 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    overflow: auto;
+    height: 100%;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+#content-wrap {
+    padding-bottom: 8rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
+}
+
+.footer {
+    background: #192027;
+    text-align: center;
+    padding: 32px 0;
+    width: 100%;
+}
+.footer p {
+    margin: 0;
+    line-height: 26px;
+    font-size: 13px;
+    color: #999;
+}
