@@ -17,11 +17,28 @@ body {
     padding-bottom: 8rem;
 }
 
+.carousel-item{
+    width: 100%; /*width you want*/
+    height: 500px; /*height you want*/
+    overflow: hidden;
+}
+
+.carousel-item > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: auto;
+}
+
 #footer {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 7rem;
+}
+
+.header {
+    background-color: #192027;
 }
 
 .footer {
@@ -35,4 +52,8 @@ body {
     line-height: 26px;
     font-size: 13px;
     color: #999;
+}
+
+.row-break {
+    margin: 30px;
 }
