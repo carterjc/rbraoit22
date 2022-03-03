@@ -1,6 +1,7 @@
-from .models import Student
+from .models import Student, Club
 import csv, datetime, os, os.path
 import zipfile, tempfile, shutil
+import json
 
 from wand.image import Image
 
@@ -84,13 +85,23 @@ def load_user_data():
 
 def load_club_data():
     clubs = []
-    pass
-
+    with open('./data/clubs.json') as c:
+        data = json.load(c)
+        for key, value in data.items():
+            temp_club = Club(
+                name=key,
+                description=value['description'],
+                website=value['website'],
+                images=value['images']
+            )
+            clubs.append(temp_club)
+    return clubs
 
 def load_data(app, db): # app, db params
     # import student data
     db_data = [
-        load_user_data()  # student data
+        load_user_data(),  # student data
+        load_club_data()   # club data
     ]
 
     with app.app_context():
