@@ -14,11 +14,11 @@
             <p>{{ clubs[i].description }}</p>
           </div>
           <div class="col-12 col-md-6 col-sm-12">
-            <img src="{{ url_for('static', filename=academy_path(clubs[i].images)) }}" class="img-fluid" alt="...">
+            <img src="{{ url_for('static', filename=create_path(clubs[i].images, 'img/academy/')) }}" class="img-fluid" alt="...">
           </div>
           {% else %}
           <div class="col-12 col-md-6 col-sm-12">
-            <img src="{{ url_for('static', filename=academy_path(clubs[i].images)) }}" class="img-fluid" alt="...">
+            <img src="{{ url_for('static', filename=create_path(clubs[i].images, 'img/academy/')) }}" class="img-fluid" alt="...">
           </div>
           <div class="col-12 col-md-6 col-sm-12">
             <p>{{ clubs[i].description }}</p>

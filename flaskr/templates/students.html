@@ -1,22 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h1>AOIT's Class of 2022</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      {% for student in students %}
-      <div class="col">
-        <div class="card">
-          {% if student.image %}
-          <img class="card-img-top" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }} Portrait">
-          {% endif %}
-          <div class="card-body inline-block">
-            <h5 class="card-title">{{ student.fName ~ ' ' ~ student.lName }}</h5>
-            <!-- <h6>{{ format_birthday(student.birthday) }} </h6> -->
-            <p class="card-text">{{ student.bio }}</p>
-            <!-- <p class="card-text">{{ student.email }}</p> -->
-            <a href="{{ make_url(student.fName, student.lName) }}" class='stretched-link'></a>
-          </div>
+  <div class="text-center mt-3 mb-3">
+    <h1>the students</h1>
+    <h5>meet the class of 2022</h5>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for student in students %}
+    <div class="col">
+      <div class="card">
+        {% if student.image %}
+        <img class="card-img-top" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }} Portrait">
+        {% endif %}
+        <div class="card-body inline-block">
+          <h5 class="card-title">{{ student.fName ~ ' ' ~ student.lName }}</h5>
+          <p class="card-text">{{ student.bio }}</p>
+          <a href="{{ make_url(student.fName, student.lName) }}" class='stretched-link'></a>
         </div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
+  </div>
 {% endblock content %}

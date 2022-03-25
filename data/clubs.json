@@ -2,31 +2,31 @@
     "CyberPatriot": {
         "description": "CyberPatriot is the National Youth Cyber Education Program created by the Air Force Association to inspire K-12 students toward careers in cybersecurity or other science, technology, engineering, and mathematics (STEM) disciplines critical to our nation's future. At the core of the program is the National Youth Cyber Defense Competition, the nation's largest cyber defense competition that puts high school and middle school students in charge of securing virtual networks. Other programs include AFA CyberCamps, an elementary school cyber education initiative, a children's literature series, CyberGenerations - a senior citizen cyber safety initiative, and a Tech Caregivers program designed to encourage cyber-savvy volunteers to give back to their communities.",
         "website": "https://www.uscyberpatriot.org/",
-        "images": "rbr-darkred.jpeg"
+        "images": "rbr-cyberpatriot2022.jpeg"
     },
     "Technology Student Association": {
         "description": "The Technology Student Association (TSA) provides student members the opportunity to explore a wide variety of STEM (science, technology, engineering, and math) education and career-interest areas.\nAll TSA middle school competitions and high school competitions are correlated with national STEM standards and can be integrated into and enhance STEM curriculum. Participation in TSA competitions allows TSA members to apply technology and engineering skills in challenging and innovative ways. Working individually or as a team, TSA members are motivated by the inspiration and enthusiasm gained from being recognized for the successful application of those skills.",
         "website": "https://tsaweb.org/",
-        "images": "rbr-darkred.jpeg"
+        "images": "rbr-tsa.JPG"
     },
     "Girls Who Code": {
         "description": "Girls Who Code (GWC) is a nonprofit organization that is dedicated to closing the gender gap in technology and computer science. Their mission is to inspire more girls to become computer scientists and engineers.",
         "website": "https://www.salesforce.org/stories/girls-who-code",
-        "images": "rbr-darkred.jpeg"
+        "images": "rbr-girlswhocode.jpeg"
     },
     "Computer Science Club": {
         "description": "To help students understand up-to-date computer technology. Review Current hardware and software products. Explore different areas of interest. Create a social environment where students with various technology experiences come together and share information with one another. Provide technology resources for less fortunate individuals in the form of charitable giving and volunteerism.",
         "website": "",
-        "images": "rbr-darkred.jpeg"
+        "images": "rbr-compsciclub.jpeg"
     },
     "CyberStart": {
         "description": "CyberStart is an online game designed to help you identify and develop the skills needed to become part of the next generation of cybersecurity professionals.\nCyberStart allows each participant to become a “Cyber Protection Agent” and discover solutions to game-like challenges. As you work your way through increasingly difficult levels you'll be exposed to over 266 cybersecurity challenges in Python programming, digital evidence, and blue and red team skills. To help them solve challenges players are given access to an online Cyber Protection Agency Field Manual and hints.",
         "website": "https://www.cyberstartamerica.org/",
-        "images": "rbr-darkred.jpeg"
+        "images": "rbr-cyberstart.jpeg"
     },
     "National Technical Honor Society": {
         "description": "NTHS believes in CTE students, the heartbeat of today's workforce! NTHS celebrates the accomplishments of today’s career and technical education students, empowering them to know the value and impact of their career paths and trades. Since 1984, NTHS has been honoring outstanding student achievement, providing scholarships and career development opportunities.",
         "website": "https://nths.org/",
-        "images": "rbr-darkred.jpeg"
+        "images": "rbr-nths.jpeg"
     }
 }
