@@ -1,4 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Clubs Page</h1>
+    <div class="text-center mt-3">
+      <h1>the clubs</h1>
+      <h5>explore AOIT clubs and activities</h5>
+    </div>
+    <div class="row-break"></div>
+    <div>
+    {% for i in range(clubs| length) %}
+      <div class="container">
+        <div class="row">
+          {% if i is divisibleby(2) %}
+          <div class="col-12 col-md-6 col-sm-12">
+            <p>{{ clubs[i].description }}</p>
+          </div>
+          <div class="col-12 col-md-6 col-sm-12">
+            <img src="{{ url_for('static', filename=create_path(clubs[i].images, 'img/academy/')) }}" class="img-fluid" alt="...">
+          </div>
+          {% else %}
+          <div class="col-12 col-md-6 col-sm-12">
+            <img src="{{ url_for('static', filename=create_path(clubs[i].images, 'img/academy/')) }}" class="img-fluid" alt="...">
+          </div>
+          <div class="col-12 col-md-6 col-sm-12">
+            <p>{{ clubs[i].description }}</p>
+          </div>
+          {% endif %}
+          <div class="row-break"></div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endblock content %}

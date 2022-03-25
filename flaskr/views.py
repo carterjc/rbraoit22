@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, flash, jsonify
-from .models import Student
+from .models import Student, Club
 from . import db
 
-import datetime
+import datetime, os
 
 
 views = Blueprint('views', __name__)
@@ -10,7 +10,8 @@ views = Blueprint('views', __name__)
 
 @views.route("/", methods=['GET'])
 def view_home():
-	return render_template('home.html')
+	carousel_photos = os.listdir('./flaskr/static/img/carousel')
+	return render_template('home.html', photos=carousel_photos)
 
 @views.route("/students", methods=['GET'])
 def view_students():
@@ -31,12 +32,15 @@ def view_student(name):
 
 @views.route("/clubs", methods=["GET"])
 def view_clubs():
-	return render_template('clubs.html')
+	clubs =  Club.query.all()
+	return render_template('clubs.html', clubs=clubs)
 
 @views.context_processor
 def utility_processor():
 	def make_url(fName, lName):
 		return "students/" + fName.lower() + lName.lower()
+	def create_path(filename, path):
+		return path + filename
 	def format_birthday(birthday):
 		return birthday.strftime("%B %-d, %Y")
 	def get_age(birthday):
@@ -46,6 +50,7 @@ def utility_processor():
 		return clubs.split(",")
 	return dict(
 		make_url=make_url,
+		create_path=create_path,
 		format_birthday=format_birthday,
 		get_age=get_age,
 		club_list=club_list

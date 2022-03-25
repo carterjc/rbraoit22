@@ -1,11 +1,24 @@
-from .models import Student
+from .models import Student, Club
 import csv, datetime, os, os.path
 import zipfile, tempfile, shutil
+import json
 
 from wand.image import Image
 
 
-def load_data(app, db): # app, db params
+def convert_images(src, dst):
+
+    for file in os.listdir(src):
+        SourceFile = src + "/" + file
+        TargetFile = dst + "/" + file.replace(".heic",".jpg")
+
+        img=Image(filename=SourceFile)
+        img.format='jpg'
+        img.save(filename=TargetFile)
+        img.close()
+
+
+def load_user_data():
     # Two data sources - folder with pictures and .csv with text data
     # we want to rename the pictures and create db entries with all the corresponding data
 
@@ -50,7 +63,7 @@ def load_data(app, db): # app, db params
 
             birthday = datetime.datetime.strptime(row[4], '%m/%d/%Y')
 
-            placeholder = Student(
+            temp_student = Student(
                 fName=row[3].split(" ")[0], 
                 lName=row[3].split(" ")[1],
                 bio=row[5],
@@ -60,25 +73,38 @@ def load_data(app, db): # app, db params
                 clubs=row[7].replace(", ", ",")
             )
 
-            students.append(placeholder)
+            students.append(temp_student)
 
         try:
             shutil.rmtree("./data/pictures")
         except OSError:
             pass
 
+        return students
+
+
+def load_club_data():
+    clubs = []
+    with open('./data/clubs.json') as c:
+        data = json.load(c)
+        for key, value in data.items():
+            temp_club = Club(
+                name=key,
+                description=value['description'],
+                website=value['website'],
+                images=value['images']
+            )
+            clubs.append(temp_club)
+    return clubs
+
+def load_data(app, db): # app, db params
+    # import student data
+    db_data = [
+        load_user_data(),  # student data
+        load_club_data()   # club data
+    ]
+
     with app.app_context():
-        db.session.add_all(students)
+        for data in db_data:
+            db.session.add_all(data)
         db.session.commit()
-
-
-def convert_images(src, dst):
-
-    for file in os.listdir(src):
-        SourceFile = src + "/" + file
-        TargetFile = dst + "/" + file.replace(".heic",".jpg")
-
-        img=Image(filename=SourceFile)
-        img.format='jpg'
-        img.save(filename=TargetFile)
-        img.close()

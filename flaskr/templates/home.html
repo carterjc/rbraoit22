@@ -1,4 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Home Page</h1>
+    <div class="container">
+        <h1 class="display-4 text-center mt-3 mb-3">rbraoit's class of '22</h1>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="width: 70%; margin: auto;">
+            <div class="carousel-inner">
+              {% for i in range(photos| length) %}
+                {% if i == 1 %}
+                <div class="carousel-item active">
+                  <img src="{{ url_for('static', filename=create_path(photos[i], 'img/carousel/')) }}" class="d-block w-100" alt="...">
+                </div>
+                {% else %}
+                <div class="carousel-item">
+                  <img src="{{ url_for('static', filename=create_path(photos[i], 'img/carousel/')) }}" class="d-block w-100" alt="...">
+                </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div class="row-break">
+          <div class="row">
+              <div class="col-md-6">
+                  <p>Welcome to Red Bank Regional's Academy of Information Technology's Class of 2022 webpage! (that's a mouthful). This site aims to showcase some of the fun we've had as well as some projects and events we've competed in. Enjoy!</p>
+              </div>
+              <div class="col-8 col-md-6">
+                  <img src="{{ url_for('static', filename='img/rbr-aoittalk.jpeg') }}" class="img-fluid" alt="...">
+              </div>
+          </div>
+    </div>
 {% endblock content %}
