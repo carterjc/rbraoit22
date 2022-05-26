@@ -61,17 +61,22 @@ def load_user_data():
                 image_loc = row[3].replace(" ", "").lower() + file_ext
                 os.rename("./data/pictures/" + old_image_loc, "./flaskr/static/img/students/" + image_loc)
 
-            birthday = datetime.datetime.strptime(row[4], '%m/%d/%Y')
 
             temp_student = Student(
                 fName=row[3].split(" ")[0], 
                 lName=row[3].split(" ")[1],
                 bio=row[5],
+                fav_thing=row[6],
                 email=row[1],
                 image=image_loc,
-                birthday=birthday,
-                clubs=row[7].replace(", ", ",")
+                clubs=row[8].replace(", ", ","),
+                plan_after_hs=row[9],
+                college=row[10]
             )
+
+            # if data has a birthday, add it to the student object
+            if row[4]:
+                temp_student.birthday = datetime.datetime.strptime(row[4], '%m/%d/%Y')
 
             students.append(temp_student)
 

@@ -21,7 +21,6 @@ def view_students():
 @views.route("/students/<name>", methods=["GET"])
 def view_student(name):
 	students =  Student.query.all()
-	print(students, name)
 	match = [x for x in students if x.fName.lower() + x.lName.lower() == name]
 	if len(match) == 0:
 		return render_template('404.html'), 404
@@ -48,10 +47,13 @@ def utility_processor():
 		return today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
 	def club_list(clubs):
 		return clubs.split(",")
+	def lower_and_underline(s):
+		return s.lower().replace(" ", "_")
 	return dict(
 		make_url=make_url,
 		create_path=create_path,
 		format_birthday=format_birthday,
 		get_age=get_age,
-		club_list=club_list
+		club_list=club_list,
+		lower_and_underline=lower_and_underline
 	)

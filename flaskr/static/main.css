@@ -57,3 +57,17 @@ body {
 .row-break {
     margin: 30px;
 }
+
+/* css for image on students page cards */
+.same-size-card-img {
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+}
+
+/* css for image on left pane of student window */
+.student-frame {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}

@@ -4,17 +4,27 @@
         <div class="row">
             <div class="col-sm-4">
                 {% if student.image %}
-                    <img class="img-fluid rounded" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }}'s Portrait">
+                    <img class="img-fluid rounded student-frame" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }}'s Portrait">
                 {% else %}
                     <img class="img-fluid rounded" src="../static/img/test.JPG" alt="Placeholder Portrait">
                 {% endif %}
 
             </div>
             <div class="col-sm-8">
-                <h1>{{ student.fName ~ ' ' ~ student.lName ~ ', ' ~ get_age(student.birthday) }}</h1>
-                <p>{{ format_birthday(student.birthday) }}</p>
+                {% if student.birthday %}
+                    <h1>{{ student.fName ~ ' ' ~ student.lName ~ ', ' ~ get_age(student.birthday) }}</h1>
+                    <p>{{ format_birthday(student.birthday) }}</p>
+                {% else %}
+                    <h1>{{ student.fName ~ ' ' ~ student.lName }}</h1>
+                {% endif %}
+                <hr />
                 <p>{{ student.bio }}</p>
-                <!-- <p>{{ student.email }}</p> -->
+                <p><b>What was your favorite thing?  </b>{{ student.fav_thing }}</p>
+                <p><b>What do you plan to do after college? </b>{{ student.plan_after_hs }}</p>
+                {% if student.college %}
+                <p>{{ student.college }}</p>
+                <img class="w-25 float-end" src="{{ '../static/img/colleges/' ~ lower_and_underline(student.college) ~ '.png' }}" alt="{{ student.college }} Seal">
+                {% endif %}
                 <h3>Clubs</h3>
                 <ul class="list-group list-group-flush">
                     {% for club in club_list(student.clubs) %}
