@@ -22,8 +22,6 @@ def create_app():
 
 	app.register_blueprint(views, url_prefix='/')
 
-	from .models import Student
-
 	create_database(app)
 
 	return app
