@@ -2,35 +2,51 @@
 {% block content %}
     <div class="container mt-5">
         <div class="row">
+            {% if student.image %}
             <div class="col-sm-4">
-                {% if student.image %}
-                    <img class="img-fluid rounded student-frame" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }}'s Portrait">
-                {% else %}
-                    <img class="img-fluid rounded" src="../static/img/test.JPG" alt="Placeholder Portrait">
-                {% endif %}
-
+                <img class="img-fluid rounded student-frame" src="../static/img/students/{{ student.image }}" alt="{{ student.fName ~ ' ' ~ student.lName }}'s Portrait">
             </div>
+            {% endif %}
+
+            {% if student.image %}
             <div class="col-sm-8">
-                {% if student.birthday %}
-                    <h1>{{ student.fName ~ ' ' ~ student.lName ~ ', ' ~ get_age(student.birthday) }}</h1>
-                    <p>{{ format_birthday(student.birthday) }}</p>
-                {% else %}
-                    <h1>{{ student.fName ~ ' ' ~ student.lName }}</h1>
-                {% endif %}
+            {% else %}
+            <div class="col-sm-12">
+            {% endif %}
+                <div class="row">
+                    <div class="col-8 col-md-8">
+                    {% if student.birthday %}
+                        <h1>{{ student.fName ~ ' ' ~ student.lName ~ ', ' ~ get_age(student.birthday) }}</h1>
+                        <p>{{ format_birthday(student.birthday) }}</p>
+                    {% else %}
+                        <h1>{{ student.fName ~ ' ' ~ student.lName }}</h1>
+                    {% endif %}
+                    </div>
+                    <div class="col-4 col-md-4">
+                        {% if student.college %}
+                        <img class="college-seal float-end" src="{{ '../static/img/colleges/' ~ lower_and_underline(student.college) ~ '.png' }}" alt="{{ student.college }} Seal">
+                        {% endif %}
+                    </div>
+                </div>
                 <hr />
                 <p>{{ student.bio }}</p>
                 <p><b>What was your favorite thing?  </b>{{ student.fav_thing }}</p>
                 <p><b>What do you plan to do after college? </b>{{ student.plan_after_hs }}</p>
-                {% if student.college %}
-                <p>{{ student.college }}</p>
-                <img class="w-25 float-end" src="{{ '../static/img/colleges/' ~ lower_and_underline(student.college) ~ '.png' }}" alt="{{ student.college }} Seal">
-                {% endif %}
                 <h3>Clubs</h3>
-                <ul class="list-group list-group-flush">
-                    {% for club in club_list(student.clubs) %}
-                        <li class="list-group-item">{{ club }}</li>
-                    {% endfor %}
-                </ul>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group list-group-flush">
+                            {% for club in club_list(student.clubs) %}
+                                <li class="list-group-item">{{ club }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- {% if student.college %}
+                    <div class="col-6">
+                        <img class="w-50 float-end" src="{{ '../static/img/colleges/' ~ lower_and_underline(student.college) ~ '.png' }}" alt="{{ student.college }} Seal">
+                    </div>
+                    {% endif %} -->
+                </div>
             </div>
         </div>
     </div>
