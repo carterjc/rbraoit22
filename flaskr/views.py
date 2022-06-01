@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
-from .models import Student, Club
-from . import db
+from .models import Student, Club, Project
+from sqlalchemy import func
 
 import datetime, os
 
@@ -20,14 +20,32 @@ def view_students():
 
 @views.route("/students/<name>", methods=["GET"])
 def view_student(name):
-	students =  Student.query.all()
+	# easier method for these parameters
+	students = Student.query.all()
 	match = [x for x in students if x.fName.lower() + x.lName.lower() == name]
+
 	if len(match) == 0:
 		return render_template('404.html'), 404
-		# return '<h1>error</h1>'
 	else:  # if of length 1 or more
-		match = match[0]
-	return render_template('student.html', student=match)
+		student = match[0]
+	
+	return render_template('student.html', student=student)
+
+@views.route("/projects", methods=['GET'])
+def view_projects():
+	projects = Project.query.all()
+	return render_template('projects.html', projects=projects)
+
+@views.route("/projects/<name>", methods=['GET'])
+def view_project(name):
+	project = Project.query.filter(
+		Project.name == name
+	).first()
+
+	if not project:
+		return render_template('404.html'), 404
+	
+	return render_template('project.html', project=project)
 
 @views.route("/clubs", methods=["GET"])
 def view_clubs():
@@ -49,11 +67,14 @@ def utility_processor():
 		return clubs.split(",")
 	def lower_and_underline(s):
 		return s.lower().replace(" ", "_")
+	def first_sentence(s):
+		return s.split(".")[0]
 	return dict(
 		make_url=make_url,
 		create_path=create_path,
 		format_birthday=format_birthday,
 		get_age=get_age,
 		club_list=club_list,
-		lower_and_underline=lower_and_underline
+		lower_and_underline=lower_and_underline,
+		first_sentence=first_sentence
 	)
