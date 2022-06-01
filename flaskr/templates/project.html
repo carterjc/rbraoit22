@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>{{ project.name}} </h1>
+                <p>{{ project.description }}</p>
+                <hr />
+                <iframe src="{{ project.video_url }}" width="560" height="315" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
