@@ -1,13 +1,13 @@
-from .models import Student, Club
+from .models import Student, Club, Project
 import csv, datetime, os, os.path
 import zipfile, tempfile, shutil
 import json
 
 from wand.image import Image
+from PIL import Image as PImage, ImageOps
 
 
 def convert_images(src, dst):
-
     for file in os.listdir(src):
         SourceFile = src + "/" + file
         TargetFile = dst + "/" + file.replace(".heic",".jpg")
@@ -15,6 +15,27 @@ def convert_images(src, dst):
         img=Image(filename=SourceFile)
         img.format='jpg'
         img.save(filename=TargetFile)
+        img.close()
+
+
+def compress_images(src):
+
+    for file in os.listdir(src):
+        path = src + "/" + file
+        img = PImage.open(path)
+
+        img = ImageOps.exif_transpose(img)
+
+        # file size in MB
+        file_size = os.stat(path).st_size / 1e6 
+
+        if file_size > 8:
+            img.save(path, optimize=True, quality=60)
+        elif file_size > 2:
+            img.save(path, optimize=True, quality=80)
+        else:
+            img.save(path, optimize=True, quality=95)
+        
         img.close()
 
 
@@ -45,6 +66,7 @@ def load_user_data():
     # Moves file from the extracted folder in the temp directory into /pictures/ in the relative data directory
     # If the file type is heic, convert to jpg
     convert_images(os.path.join(temp_dir, extract_name), extraction_dir)
+    compress_images(extraction_dir)
 
 
     with open("./data/student_data.csv", newline='') as f:
@@ -88,6 +110,32 @@ def load_user_data():
         return students
 
 
+def load_project_data():
+    projects = []
+
+    rows = [
+        {
+            "name": "test",
+            "description": "test",
+            "members": "test",
+            "source": "source",
+            "video_url": "https://www.youtube.com/embed/KU9yGLDw-fg"
+        }
+    ]
+
+    for row in rows:
+        temp_proj = Project(
+                    name=row['name'],
+                    description=row['description'],
+                    members=row['members'],
+                    source=row['source'],
+                    video_url=row['video_url']
+                )
+        projects.append(temp_proj)
+    
+    return projects
+
+
 def load_club_data():
     clubs = []
     with open('./data/clubs.json') as c:
@@ -105,8 +153,9 @@ def load_club_data():
 def load_data(app, db): # app, db params
     # import student data
     db_data = [
-        load_user_data(),  # student data
-        load_club_data()   # club data
+        load_user_data(),       # student data
+        load_club_data(),       # club data
+        load_project_data(),    # project data
     ]
 
     with app.app_context():
