@@ -71,3 +71,8 @@ body {
     height: 70vh;
     object-fit: cover;
 }
+
+.college-seal {
+    max-height: 15vh;
+    object-fit: cover;
+}
