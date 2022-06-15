@@ -1,0 +1,68 @@
+{
+    "RBR AOIT Website": {
+        "description": "A website with the goal of introducing others to the bright minds of Red Bank Regional’s Academy of Information Technology’s Class of 2022 and conveying the breadth of our accomplishments in a permanent manner.",
+        "members": "cartercostic",
+        "source": "https://github.com/carterjc/rbraoit22",
+        "video_url": "https://www.youtube.com/embed/KU9yGLDw-fg"
+    },
+    "WeJAM": {
+        "description": "My idea was based on TikTok videos where someone would play one part of a song and others would add their own music with the duets feature.  My intention was to create an app that does exclusively that.",
+        "members": "finnbargourlie",
+        "source": "",
+        "video_url": "https://www.youtube.com/embed/gaQDqA252m8"
+    },
+    "Calendar App": {
+        "description": "Our project is a calendar/reminder app that helps people remember what they have to do on certain days. They can input events into the calendar and then click on days which will show them what events they have on that specific day.",
+        "members": "jakecohen;williamanan",
+        "source": "",
+        "video_url": "https://www.youtube.com/embed/KhyoXXlTNSk"
+    },
+    "US Commute": {
+        "description": "uscommute.com was designed for two reasons: to give viewers current information about given states and to give travelers information about the states they are traveling to. On the site you can find the current weather, news, time/date, map, and state stats.",
+        "members": "jamesrossano;omirfraser",
+        "source": "https://github.com/james-omir/USCommute",
+        "video_url": "https://www.youtube.com/embed/MtP28UPoBY4"
+    },
+    "Jump Castle": {
+        "description": "I made my project to be a fun survival-type game. It also ended up being a little bit like a typing game. The goal made was to run away from skeletons for as long as possible.",
+        "members": "connorlanga",
+        "source": "",
+        "video_url": ""
+    },
+    "Marginal": {
+        "description": "Combining features of websites that let you read hundreds of poems and websites where people can analyze and engage with every line of their favorite songs, marginal is a place where people can browse poems, find new ones, and put comments on whole poems and individual lines to share their understanding, confusion, love, hate, and so on.",
+        "members": "mollyjain",
+        "source": "https://github.com/MollyJ04/poetryApp",
+        "video_url": "https://www.youtube.com/embed/QYrZAE_34NE"
+    },
+    "MOAC": {
+        "description": "MOAC is a website which allows users to post about their favorite movies, tv shows, music, and books.  They are allowed to write reviews on their posts which other users can see. Users will be allowed to login/signup and have access to an account which will save their posts/reviews.",
+        "members": "oliviacassidy;mahikaajmani",
+        "source": "",
+        "video_url": "https://www.youtube.com/embed/38dl7Gd3Ij4"
+    },
+    "Blackjack": {
+        "description": "We chose this game because it is one that we frequently play in real life. It also has a AI player in it which is the dealer, so we found it to be pretty interesting to code a random user that technically makes its own decisions. Each participant attempts to beat the dealer by getting a count as close to 21 as possible, without going over 21.",
+        "members": "braedencarroll;colinswords",
+        "source": "",
+        "video_url": "https://www.youtube.com/embed/hQApIBIdilA"
+    },
+    "Tanks": {
+        "description": "Tanks is a single player game where you try to destroy the other tank before it kills you. You can adjust the power and angle of your shot and drive around the battlefield to get a better shot. There is a wall in the middle blocking your path that changes its height and location every game keeping it fresh and new every time.",
+        "members": "dylangoldberg",
+        "source": "https://github.com/DylanG829/TanksProj",
+        "video_url": "https://www.youtube.com/embed/MHuLjWiZbt0"
+    },
+    "Restaurant Finder": {
+        "description": "This website is sort of like doordash but on your computer. When you load onto the home screen you are prompted with a hello message briefly describing what to enter to get the results. After you enter city you intend on searching, the state, and the food category;  you are sent to the restaurant list tab. From there you can choose what page of restaurants to choose from if there are multiple pages.",
+        "members": "gavingebhardt",
+        "source": "",
+        "video_url": ""
+    },
+    "DailyMi": {
+        "description": "Dailymi is a productivity mobile app.  This app is primarily for those who want to stay organized and want to be productive.  The app is a simple notes app that includes a checklist, stickynotes and a timer.",
+        "members": "kerenpimentel",
+        "source": "",
+        "video_url": ""
+    }
+}

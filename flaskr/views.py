@@ -39,7 +39,7 @@ def view_projects():
 @views.route("/projects/<name>", methods=['GET'])
 def view_project(name):
 	project = Project.query.filter(
-		Project.name == name
+		func.lower(Project.name) == name.replace("_", " ")
 	).first()
 
 	if not project:
@@ -69,6 +69,16 @@ def utility_processor():
 		return s.lower().replace(" ", "_")
 	def first_sentence(s):
 		return s.split(".")[0]
+	def get_member_pictures(m):
+		# input is a semicolon deliminated string - firstnamelastname2;firstnamelastname2
+		members = []
+
+		for name in m.split(';'):
+			students = Student.query.all()
+			match = [x for x in students if x.fName.lower() + x.lName.lower() == name]
+			if not match: continue
+			members.append(match[0])
+		return members
 	return dict(
 		make_url=make_url,
 		create_path=create_path,
@@ -76,5 +86,6 @@ def utility_processor():
 		get_age=get_age,
 		club_list=club_list,
 		lower_and_underline=lower_and_underline,
-		first_sentence=first_sentence
+		first_sentence=first_sentence,
+		get_member_pictures=get_member_pictures
 	)

@@ -113,25 +113,18 @@ def load_user_data():
 def load_project_data():
     projects = []
 
-    rows = [
-        {
-            "name": "test",
-            "description": "test",
-            "members": "test",
-            "source": "source",
-            "video_url": "https://www.youtube.com/embed/KU9yGLDw-fg"
-        }
-    ]
+    with open('./data/projects.json') as p:
+        data = json.load(p)
+        for key, value in data.items():
+            temp_proj = Project(
+                name=key,
+                description=value['description'],
+                members=value['members'],
+                source=value['source'],
+                video_url=value['video_url']
+            )
 
-    for row in rows:
-        temp_proj = Project(
-                    name=row['name'],
-                    description=row['description'],
-                    members=row['members'],
-                    source=row['source'],
-                    video_url=row['video_url']
-                )
-        projects.append(temp_proj)
+            projects.append(temp_proj)
     
     return projects
 

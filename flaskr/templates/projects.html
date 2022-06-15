@@ -2,7 +2,7 @@
 {% block content %}
   <div class="text-center mt-3 mb-3">
     <h1>our projects</h1>
-    <h5>something something something</h5>
+    <h5>learn about our creations</h5>
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for project in projects %}
@@ -10,8 +10,10 @@
       <div class="card">
         <div class="card-body inline-block">
           <h5 class="card-title">{{ project.name }}</h5>
-          <p class="card-text">{{ project.description }}</p>
-          <a href="projects/{{ project.name }}" class='stretched-link'></a>
+          {% for student in get_member_pictures(project.members) %}
+          <p class="card-text">{{ student.fName ~ ' ' ~ student.lName }}</p>
+          {% endfor %}
+          <a href="projects/{{ project.name | replace(' ', '_') | lower }}" class='stretched-link'></a>
         </div>
       </div>
     </div>
